@@ -1,4 +1,4 @@
-# Ex-4 Rail-Fence-Program
+# Ex-5 Rail-Fence-Program
 
 # IMPLEMENTATION OF RAIL FENCE – ROW & COLUMN TRANSFORMATION TECHNIQUE
 
@@ -18,8 +18,60 @@ STEP-3: Now read the keyword depending on the number of columns of the plain tex
 STEP-4: Arrange the characters of the keyword in sorted order and the corresponding columns of the plain text.
 STEP-5: Read the characters row wise or column wise in the former order to get the cipher text.
 
-# PROGRAM
+# PROGRAM:
+NAME: JAYAMANIKANDA M
 
-# OUTPUT
+REG NO: 212225230113
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+int main() {
+    char str[1000];
+    int rails, len;
+    int i, j;
 
-# RESULT
+    printf("Enter a Secret Message:\n");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    printf("Enter number of rails:\n");
+    scanf("%d", &rails);
+
+    len = strlen(str);
+    char rail[rails][len];
+    for (i = 0; i < rails; i++) {
+        for (j = 0; j < len; j++) {
+            rail[i][j] = '\n';
+        }
+    }
+    int row = 0;
+    int dir_down = 0; 
+
+    for (j = 0; j < len; j++) {
+        rail[row][j] = str[j];
+        if (row == 0)
+            dir_down = 1;
+        else if (row == rails - 1)
+            dir_down = 0;
+        row += dir_down ? 1 : -1;
+    }
+    printf("Encrypted Message: ");
+    for (i = 0; i < rails; i++) {
+        for (j = 0; j < len; j++) {
+            if (rail[i][j] != '\n')
+                printf("%c", rail[i][j]);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
+# OUTPUT:
+<img width="1452" height="497" alt="image" src="https://github.com/user-attachments/assets/3000383b-6b23-4ac4-8516-6d11ccae3292" />
+
+
+# RESULT: 
+Thus, our objective is achieved 
